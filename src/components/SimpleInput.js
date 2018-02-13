@@ -22,6 +22,7 @@ class SimpleInput extends Component {
       <div>
         <label>
           {this.props.label}
+
           <input
             className=''
             value={this.props.val}

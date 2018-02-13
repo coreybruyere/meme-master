@@ -1,16 +1,14 @@
-import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Auth from './Auth';
-import Login from './Login';
+import Welcome from './Welcome';
 import Register from './Register';
 
 export default () => (
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Switch>
-      <Route exact path="/login" render={props => <Login {...props} />} />
-      <Route exact path="/register" render={props => <Register {...props} />} />
-      <Route exact path="/auth" render={props => <Auth {...props} />} />
+      <Route exact path='/' render={props => <Register {...props} />} />
+      <Route exact path='/welcome' render={props => <Welcome {...props} />} />
     </Switch>
   </BrowserRouter>
 );

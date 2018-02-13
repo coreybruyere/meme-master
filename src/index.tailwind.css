@@ -1,3 +1,147 @@
 @tailwind preflight;
 
+/* Initially planned on using GlamorCSS + https://github.com/andrewdelprete/babel-plugin-tailwind but that required a bit
+more configuration. With that said here is some BEM-styled classes all built out in one place 🤢 by extracting component classes using Tailwind utilites.  */
+
+/* Base element CSS */
+body {
+  @apply .font-sans .bg-blue-light .text-blue-darker;
+  background-image: linear-gradient(170deg, #6cb2eb 50%, #3490dc 70%)
+}
+
+input:not([type='checkbox']) {
+ @apply .bg-grey-lighter .appearance-none .border .border-blue-darker .rounded .w-full .mb-4 .py-2 .px-4 .text-grey-darker;
+}
+
+a {
+  @apply .text-orange-darker;
+}
+
+label {
+  @apply .mb-4;
+}
+
+/* Component CSS */
+/* (Ideally these would would be declared in their own components using something like Glamor / Styled Components OR imported from seperate Sass files from a CSS-only directory. But I wanted to try out utility-first classes with Tailwind.) */
+.site-wrap {
+  @apply .h-screen;
+}
+
+.site-main {
+  @apply .pt-6 .pr-6 .pl-6 .pb-8 .mb-8 .flex .justify-center .max-w-xl .mx-auto;
+}
+
+.site-header {
+  @apply .flex .relative .justify-center .py-4;
+}
+
+.site-header__logo {
+  @apply .block .relative .z-10 .w-1/2 .mx-auto .max-w-xs;
+  animation-name: bold-entrance;
+  animation-duration: 1.85s;
+  animation-timing-function: ease-in;
+}
+
+.site-header__bg {
+  @apply .absolute .pin-b .h-64 .w-full;
+  transition: transform 2s;
+  transform: rotate(180deg) translateY(-15%);
+
+  @media (min-width: 48.750em) {
+    transform: rotate(180deg) translateY(0);
+  }
+}
+
+.button {
+  @apply .bg-blue .text-white .font-semibold .py-2 .px-4 .border .border-blue .rounded .shadow .w-full;
+
+  &:hover,
+  &:active {
+    @apply .bg-blue-light;
+  }
+}
+
+.button--large {
+  @apply .py-4;
+}
+
+.alert {
+  @apply .flex .justify-between .bg-grey-lighter .border .border-grey .rounded .w-full .mb-4 .py-4 .px-4 .text-grey-darker;
+}
+
+.alert--success {
+  @apply .bg-green-lighter .border-green .text-green-darker;
+}
+
+.card {
+  @apply .relative .max-w-sm .rounded .overflow-hidden .shadow-lg .bg-white;
+  animation-name: slide-down-entrance;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+}
+
+.card__content {
+  @apply .p-6;
+}
+
+.card__image {
+  @apply .block .w-full;
+  filter: saturate(2) opacity(.75);
+}
+
+.card--wide {
+  @apply .w-full .max-w-full;
+}
+
+/* CSS Animations */
+@keyframes bold-entrance {
+  0% {
+    transform: scale(0.3) rotate(7deg) translateX(-30%) translateY(30%);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(1) rotate(-5deg) translateX(2%) translateY(-2%);
+    opacity: 0.25;
+  }
+  45% {
+    transform: scale(0.98) rotate(7deg) translateX(0%) translateY(0%);
+    opacity: 1;
+  }
+  60% {
+    transform: scale(1.01) rotate(-3deg) translateX(0%) translateY(0%);
+  }
+  75% {
+    transform: scale(0.99) rotate(1deg) translateX(0%) translateY(0%);
+  }
+  90% {
+    transform: scale(1.01) rotate(0deg) translateX(0%) translateY(0%);
+  }
+  100% {
+    transform: scale(1) rotate(0deg) translateX(0%) translateY(0%);
+  }
+}
+
+@keyframes slide-down-entrance {
+  0% {
+    transform: translateY(-100%) scale(.55);
+    opacity: 0;
+  }
+  50%{
+    transform: translateY(8%);
+    opacity: 1;
+  }
+  65%{
+    transform: translateY(-4%);
+  }
+  80%{
+    transform: translateY(4%) scale(1);
+  }
+  95%{
+    transform: translateY(-2%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
 @tailwind utilities;

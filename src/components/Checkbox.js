@@ -31,15 +31,15 @@ class Checkbox extends Component {
 
     return (
       <div>
-        <label>
+        <label className='flex items-start'>
           <input
             type='checkbox'
-            className=''
             checked={checked}
             disabled={disabled}
             onChange={this.handleChange}
           />
-          {this.props.children}
+
+          <span className='ml-2'>{this.props.children}</span>
         </label>
       </div>
     );
